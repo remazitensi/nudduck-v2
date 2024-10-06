@@ -1,1 +1,1 @@
-# NUDDUCK-V2 Project
+# NUDDUCK-v2 Project
