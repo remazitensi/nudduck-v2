@@ -27,9 +27,6 @@ coverage
 # Bower dependency directory (https://bower.io/)
 bower_components
 
-# Node.js modules
-node_modules
-
 # Build directories
 dist
 build
@@ -43,16 +40,14 @@ build
 # TypeScript cache
 *.tsbuildinfo
 
-# Yarn v1
-.yarn-integrity
-
 # Yarn v2 and above
 .pnp.*
-.yarn/cache
-.yarn/unplugged
-.yarn/build-state.yml
-.yarn/install-state.gz
-.yarn/.package-cache
+.yarn/*
+!.yarn/patches
+!.yarn/plugins
+!.yarn/releases
+!.yarn/sdks
+!.yarn/versions
 
 # dotenv environment variables file
 .env
@@ -68,3 +63,6 @@ out
 
 # Nuxt.js build output
 .nuxt
+
+# Exclude .vscode directory
+.vscode

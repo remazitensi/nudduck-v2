@@ -8,8 +8,16 @@
   },
   "devDependencies": {
     "ts-loader": "^9.5.1",
+    "ts-node": "^10.9.2",
+    "tsconfig-paths": "^4.2.0",
     "typescript": "^5.6.2",
     "webpack": "^5.95.0",
     "webpack-cli": "^5.1.4"
-  }
+  },
+  "scripts": {
+    "start": "ts-node -r tsconfig-paths/register apps/api/src/main.ts",
+    "build": "tsc -p tsconfig.app.json",
+    "start:dev": "ts-node -r tsconfig-paths/register apps/api/src/main.ts"
+  },
+  "packageManager": "yarn@4.5.0"
 }
