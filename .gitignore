@@ -40,14 +40,11 @@ build
 # TypeScript cache
 *.tsbuildinfo
 
-# Yarn v2 and above
-.pnp.*
-.yarn/*
-!.yarn/patches
-!.yarn/plugins
-!.yarn/releases
-!.yarn/sdks
-!.yarn/versions
+# Exclude node_modules directory
+node_modules
+
+# Exclude .yarn directory
+.yarn/
 
 # dotenv environment variables file
 .env

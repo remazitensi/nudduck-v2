@@ -14,8 +14,9 @@
       "@libs/*": ["libs/*"],
       "@apps/*": ["apps/*"]
     },
-    "outDir": "./dist"
+    "outDir": "./dist",
+    "types": ["jest"]
   },
-  "include": ["apps/**/*", "libs/**/*"],
+  "include": ["apps/**/*", "libs/**/*", "test/**/*"],
   "exclude": ["dist"]
 }
