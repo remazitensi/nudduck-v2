@@ -1,0 +1,21 @@
+{
+  "compilerOptions": {
+    "target": "ES2022",
+    "module": "CommonJS",
+    "lib": ["ES2022", "dom"],
+    "strict": true,
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": true,
+    "forceConsistentCasingInFileNames": true,
+    "baseUrl": "./",
+    "paths": {
+      "@libs/*": ["libs/*"],
+      "@apps/*": ["apps/*"]
+    },
+    "outDir": "./dist"
+  },
+  "include": ["apps/**/*", "libs/**/*"],
+  "exclude": ["dist"]
+}
