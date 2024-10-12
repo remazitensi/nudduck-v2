@@ -1,7 +1,7 @@
-import { LocalDateTime } from 'js-joda';
+import dayjs, { Dayjs } from 'dayjs';
 
 export class DateTimeUtil {
-  static toString(localDateTime: LocalDateTime): string {
-    return localDateTime.toString();
+  static toString(localDateTime: Dayjs): string {
+    return localDateTime.format();
   }
 }

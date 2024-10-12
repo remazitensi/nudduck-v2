@@ -1,13 +1,8 @@
 import { Controller, Get } from '@nestjs/common';
-<<<<<<< HEAD
 import { ApiService } from '@apps/api/src/api.service';
 import { EntityService } from '@libs/entity/src/entity.service';
 import { UserDetailDto } from '@libs/dto/user/user-detail.dto';
 import { plainToInstance } from 'class-transformer';
-=======
-import { ApiService } from './api.service';
-import { EntityService } from '../../../libs/entity/src/entity.service';
->>>>>>> origin/main
 
 @Controller()
 export class ApiController {
@@ -20,7 +15,6 @@ export class ApiController {
   getHello(): string {
     return this.apiService.getHello();
   }
-<<<<<<< HEAD
 
   @Get('/entity')
   getEntity(): string {
@@ -42,10 +36,5 @@ export class ApiController {
     // UserDetailDto로 변환
     const userDto = plainToInstance(UserDetailDto, userData);
     return userDto;
-=======
-  @Get('/entity')
-  getEntity(): string {
-    return this.entityService.getHello();
->>>>>>> origin/main
   }
 }

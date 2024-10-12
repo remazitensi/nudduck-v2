@@ -1,6 +1,6 @@
 import { Exclude, Expose } from 'class-transformer';
 import { ApiProperty } from '@nestjs/swagger';
-import { LocalDateTime } from 'js-joda';
+import { Dayjs } from 'dayjs';
 import { DateTimeUtil } from '@libs/utils/DateTimeUtil';
 import { User } from '@libs/entity/user';
 
@@ -24,7 +24,7 @@ export class UserDetailDto {
   @Exclude() private readonly _hashtags: string[];
 
   @ApiProperty({ description: '가입 일시', example: '2024-10-10T00:00:00.000Z' })
-  @Exclude() private readonly _signupDateTime: LocalDateTime;
+  @Exclude() private readonly _signupDateTime: Dayjs;
 
   constructor(user: User) {
     this._userId = user.id;

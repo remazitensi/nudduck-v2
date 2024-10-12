@@ -12,17 +12,13 @@
     "baseUrl": "./",
     "paths": {
       "@libs/*": ["libs/*"],
-      "@apps/*": ["apps/*"]
+      "@apps/*": ["apps/*"],
+      "@entity/*": ["libs/entity/src/*"],
+      "@api/*": ["apps/api/src/*"]
     },
-<<<<<<< HEAD
     "outDir": "./dist",
     "types": ["jest"]
   },
   "include": ["apps/**/*", "libs/**/*", "test/**/*"],
-=======
-    "outDir": "./dist"
-  },
-  "include": ["apps/**/*", "libs/**/*"],
->>>>>>> origin/main
   "exclude": ["dist"]
 }

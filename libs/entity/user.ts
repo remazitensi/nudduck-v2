@@ -1,5 +1,5 @@
 import { Exclude, Expose } from 'class-transformer';
-import { LocalDateTime } from 'js-joda';
+import { Dayjs } from 'dayjs';
 
 export class User {
   @Exclude() private readonly _id: number;
@@ -8,7 +8,7 @@ export class User {
   @Exclude() private readonly _name: string;
   @Exclude() private readonly _imageUrl: string;
   @Exclude() private readonly _hashtags: string[];
-  @Exclude() private readonly _createdAt: LocalDateTime;
+  @Exclude() private readonly _createdAt: Dayjs;
 
   constructor(
     id: number,
@@ -17,7 +17,7 @@ export class User {
     name: string,
     imageUrl: string,
     hashtags: string[],
-    createdAt: LocalDateTime
+    createdAt: Dayjs
   ) {
     this._id = id;
     this._nickname = nickname;
@@ -59,7 +59,7 @@ export class User {
   }
 
   @Expose()
-  get createdAt(): LocalDateTime {
+  get createdAt(): Dayjs {
     return this._createdAt;
   }
 }
