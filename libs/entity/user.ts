@@ -1,15 +1,13 @@
 import { Exclude, Expose } from 'class-transformer';
-import dayjs, { Dayjs } from 'dayjs';
-import { DateTimeUtil } from '@libs/utils/DateTimeUtil';
 
 export class User {
-  @Exclude() private readonly _id: number;
-  @Exclude() private readonly _nickname: string; 
-  @Exclude() private readonly _email: string;
-  @Exclude() private readonly _name: string;
-  @Exclude() private readonly _imageUrl: string;
-  @Exclude() private readonly _hashtags: string[];
-  @Exclude() private readonly _createdAt: Dayjs;
+  @Exclude() private readonly id: number;
+  @Exclude() private readonly nickname: string; 
+  @Exclude() private readonly email: string;
+  @Exclude() private readonly name: string;
+  @Exclude() private readonly imageUrl: string;
+  @Exclude() private readonly hashtags: string[];
+  @Exclude() private readonly createdAt: Date;
 
   constructor(
     id: number,
@@ -18,49 +16,49 @@ export class User {
     name: string,
     imageUrl: string,
     hashtags: string[],
-    createdAt: string
+    createdAt: Date
   ) {
-    this._id = id;
-    this._nickname = nickname;
-    this._email = email;
-    this._name = name;
-    this._imageUrl = imageUrl;
-    this._hashtags = hashtags;
-    this._createdAt = dayjs(createdAt);
+    this.id = id;
+    this.nickname = nickname;
+    this.email = email;
+    this.name = name;
+    this.imageUrl = imageUrl;
+    this.hashtags = hashtags;
+    this.createdAt = createdAt;
   }
 
   @Expose()
-  get id(): number {
-    return this._id;
+  getId(): number {
+    return this.id;
   }
 
   @Expose()
-  get nickname(): string {
-    return this._nickname;
+  getNickname(): string {
+    return this.nickname;
   }
 
   @Expose()
-  get email(): string {
-    return this._email;
+  getEmail(): string {
+    return this.email;
   }
 
   @Expose()
-  get name(): string {
-    return this._name;
+  getName(): string {
+    return this.name;
   }
 
   @Expose()
-  get imageUrl(): string {
-    return this._imageUrl;
+  getImageUrl(): string {
+    return this.imageUrl;
   }
 
   @Expose()
-  get hashtags(): string[] {
-    return this._hashtags;
+  getHashtags(): string[] {
+    return this.hashtags;
   }
 
   @Expose()
-  get createdAt(): string {
-    return DateTimeUtil.toString(this._createdAt);
+  getCreatedAt(): Date {
+    return this.createdAt;
   }
 }

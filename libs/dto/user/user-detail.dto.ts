@@ -1,8 +1,7 @@
 import { Exclude, Expose } from 'class-transformer';
 import { ApiProperty } from '@nestjs/swagger';
 import { User } from '@libs/entity/user';
-import { DateTimeUtil } from '@libs/utils/DateTimeUtil';
-import dayjs from 'dayjs';
+import { DateTimeUtil, DayjsDateProvider } from '@libs/utils/DateTimeUtil';
 
 export class UserDetailDto {
   @ApiProperty({ description: '유저 ID', example: 1 })
@@ -24,16 +23,16 @@ export class UserDetailDto {
   @Exclude() private readonly _hashtags: string[];
 
   @ApiProperty({ description: '가입 일시', example: '2024-10-10T00:00:00.000Z' })
-  @Exclude() private readonly _signupDateTime: string;
+  @Exclude() private readonly _createdAt: Date;
 
-  constructor(user: User) {
-    this._userId = user.id;
-    this._nickname = user.nickname;
-    this._email = user.email;
-    this._name = user.name;
-    this._imageUrl = user.imageUrl || '';
-    this._hashtags = user.hashtags || [];
-    this._signupDateTime = user.createdAt;
+  constructor(user: User, dateTimeUtil: DateTimeUtil) {
+    this._userId = user.getId();
+    this._nickname = user.getNickname();
+    this._email = user.getEmail();
+    this._name = user.getName();
+    this._imageUrl = user.getImageUrl() || '';
+    this._hashtags = user.getHashtags() || [];
+    this._createdAt = user.getCreatedAt(); // User에서 Date 객체 가져오기
   }
 
   @Expose()
@@ -67,7 +66,8 @@ export class UserDetailDto {
   }
 
   @Expose()
-  get signupDateTime(): string {
-    return DateTimeUtil.toString(dayjs(this._signupDateTime));
+  get createdAt(): string {
+    const dateTimeUtil = new DateTimeUtil(new DayjsDateProvider());
+    return dateTimeUtil.formatDate(this._createdAt); // 포맷된 문자열로 반환
   }
 }

@@ -3,23 +3,28 @@ import { UserRequestDto } from '@libs/dto/user/user-request.dto';
 import { UserService } from '@libs/services/user.service';
 import { UserDetailDto } from '@libs/dto/user/user-detail.dto';
 import { User } from '@libs/entity/user';
-import { DateTimeUtil } from '@libs/utils/DateTimeUtil';
-import dayjs from 'dayjs';
+import { DateTimeUtil, DayjsDateProvider } from '@libs/utils/DateTimeUtil';
 
 @Controller('user')
 export class UserController {
-  constructor(private readonly userService: UserService) {}
+  private readonly dateTimeUtil: DateTimeUtil;
+
+  constructor(private readonly userService: UserService) {
+    this.dateTimeUtil = new DateTimeUtil(new DayjsDateProvider());
+  }
 
   @Post()
   createUser(@Body() userRequestDto: UserRequestDto): UserDetailDto {
+    const currentDateTime: Date = this.dateTimeUtil.getCurrentDateTime();
+
     const userData: User = new User(
       1, // 임시 아이디
       userRequestDto.nickname!,
       userRequestDto.email ?? '',
       userRequestDto.name ?? '',
-      userRequestDto.imageUrl ?? '', 
+      userRequestDto.imageUrl ?? '',
       userRequestDto.hashtags ?? [],
-      DateTimeUtil.toString(dayjs())
+      currentDateTime
     );
 
     return this.userService.createUser(userData);
