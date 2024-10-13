@@ -3,6 +3,7 @@ import { UserRequestDto } from '@libs/dto/user/user-request.dto';
 import { UserService } from '@libs/services/user.service';
 import { UserDetailDto } from '@libs/dto/user/user-detail.dto';
 import { User } from '@libs/entity/user';
+import { DateTimeUtil } from '@libs/utils/DateTimeUtil';
 import dayjs from 'dayjs';
 
 @Controller('user')
@@ -15,10 +16,10 @@ export class UserController {
       1, // 임시 아이디
       userRequestDto.nickname!,
       userRequestDto.email ?? '',
-       userRequestDto.name ?? '',
+      userRequestDto.name ?? '',
       userRequestDto.imageUrl ?? '', 
       userRequestDto.hashtags ?? [],
-      dayjs()
+      DateTimeUtil.toString(dayjs())
     );
 
     return this.userService.createUser(userData);

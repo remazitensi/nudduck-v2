@@ -1,5 +1,6 @@
 import { Exclude, Expose } from 'class-transformer';
-import { Dayjs } from 'dayjs';
+import dayjs, { Dayjs } from 'dayjs';
+import { DateTimeUtil } from '@libs/utils/DateTimeUtil';
 
 export class User {
   @Exclude() private readonly _id: number;
@@ -17,7 +18,7 @@ export class User {
     name: string,
     imageUrl: string,
     hashtags: string[],
-    createdAt: Dayjs
+    createdAt: string
   ) {
     this._id = id;
     this._nickname = nickname;
@@ -25,7 +26,7 @@ export class User {
     this._name = name;
     this._imageUrl = imageUrl;
     this._hashtags = hashtags;
-    this._createdAt = createdAt;
+    this._createdAt = dayjs(createdAt);
   }
 
   @Expose()
@@ -59,7 +60,7 @@ export class User {
   }
 
   @Expose()
-  get createdAt(): Dayjs {
-    return this._createdAt;
+  get createdAt(): string {
+    return DateTimeUtil.toString(this._createdAt);
   }
 }

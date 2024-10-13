@@ -1,8 +1,8 @@
 import { Exclude, Expose } from 'class-transformer';
 import { ApiProperty } from '@nestjs/swagger';
-import { Dayjs } from 'dayjs';
-import { DateTimeUtil } from '@libs/utils/DateTimeUtil';
 import { User } from '@libs/entity/user';
+import { DateTimeUtil } from '@libs/utils/DateTimeUtil';
+import dayjs from 'dayjs';
 
 export class UserDetailDto {
   @ApiProperty({ description: '유저 ID', example: 1 })
@@ -18,13 +18,13 @@ export class UserDetailDto {
   @Exclude() private readonly _name: string;
 
   @ApiProperty({ description: '프로필 이미지 URL', example: 'https://remazitensi/profile-image.jpg' })
-  @Exclude() private readonly _imageUrl: string;       
+  @Exclude() private readonly _imageUrl: string;
 
-  @ApiProperty({ description: '유저 해시태그 목록', example: ['Developer'] })     
+  @ApiProperty({ description: '유저 해시태그 목록', example: ['Developer'] })
   @Exclude() private readonly _hashtags: string[];
 
   @ApiProperty({ description: '가입 일시', example: '2024-10-10T00:00:00.000Z' })
-  @Exclude() private readonly _signupDateTime: Dayjs;
+  @Exclude() private readonly _signupDateTime: string;
 
   constructor(user: User) {
     this._userId = user.id;
@@ -33,7 +33,7 @@ export class UserDetailDto {
     this._name = user.name;
     this._imageUrl = user.imageUrl || '';
     this._hashtags = user.hashtags || [];
-    this._signupDateTime = user.createdAt; 
+    this._signupDateTime = user.createdAt;
   }
 
   @Expose()
@@ -68,6 +68,6 @@ export class UserDetailDto {
 
   @Expose()
   get signupDateTime(): string {
-    return DateTimeUtil.toString(this._signupDateTime);
+    return DateTimeUtil.toString(dayjs(this._signupDateTime));
   }
 }
