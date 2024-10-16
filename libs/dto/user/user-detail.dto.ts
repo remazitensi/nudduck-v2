@@ -32,7 +32,7 @@ export class UserDetailDto {
     this._name = user.getName();
     this._imageUrl = user.getImageUrl() || '';
     this._hashtags = user.getHashtags() || [];
-    this._createdAt = user.getCreatedAt(); // User에서 Date 객체 가져오기
+    this._createdAt = user.getCreatedAt();
   }
 
   @Expose()
@@ -67,7 +67,6 @@ export class UserDetailDto {
 
   @Expose()
   get createdAt(): string {
-    const dateTimeUtil = new DateTimeUtil(new DayjsDateProvider());
-    return dateTimeUtil.formatDate(this._createdAt); // 포맷된 문자열로 반환
+    return DateTimeUtil.formatDate(this._createdAt);
   }
 }

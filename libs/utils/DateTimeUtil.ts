@@ -1,8 +1,8 @@
+import dayjs from 'dayjs';
+
 export interface DateProvider {
   toString(localDateTime: Date): string;
 }
-
-import dayjs from 'dayjs';
 
 export class DayjsDateProvider implements DateProvider {
   toString(localDateTime: Date): string {
@@ -11,17 +11,13 @@ export class DayjsDateProvider implements DateProvider {
 }
 
 export class DateTimeUtil {
-  private readonly dateProvider: DateProvider;
+  private static readonly dateProvider: DateProvider = new DayjsDateProvider();
 
-  constructor(dateProvider: DateProvider) {
-    this.dateProvider = dateProvider;
-  }
-
-  formatDate(localDateTime: Date): string {
+  static formatDate(localDateTime: Date): string {
     return this.dateProvider.toString(localDateTime);
   }
 
-  getCurrentDateTime(): Date {
+  static getCurrentDateTime(): Date {
     return new Date();
   }
 }
