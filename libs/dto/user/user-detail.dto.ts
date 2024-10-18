@@ -1,7 +1,7 @@
 import { Exclude, Expose } from 'class-transformer';
 import { ApiProperty } from '@nestjs/swagger';
 import { User } from '@libs/entity/user';
-import { DateTimeUtil, DayjsDateProvider } from '@libs/utils/DateTimeUtil';
+import { DateTimeUtil } from '@libs/utils/DateTimeUtil';
 
 export class UserDetailDto {
   @ApiProperty({ description: '유저 ID', example: 1 })
